@@ -1,0 +1,193 @@
+@import "tailwindcss";
+
+:root {
+  /* Base surfaces */
+  --background: #f1f2f4; /* Trello-like page background */
+  --surface: #f1f2f4; /* Trello-like list background */
+  --surface-card: #ffffff; /* Explicitly for cards */
+  --surface-muted: #f7f8f9;
+  --foreground: #172b4d;
+  --foreground-muted: #5e6c84; /* Trello's muted text color */
+  --border: #d1d2d6;
+
+  /* Brand accent — used sparingly: primary actions, links, focus rings */
+  --accent: #0c66e4; /* Atlassian/Trello Blue */
+  --accent-hover: #0747a6;
+  --accent-subtle: #ebeffc;
+
+  /* Task status — semantic, not decorative. Order matches the kanban flow. */
+  --status-todo: #8a8781;
+  --status-todo-bg: #f2f1ee;
+  --status-in-progress: #b8790c;
+  --status-in-progress-bg: #fdf3e1;
+  --status-in-review: #3454d1;
+  --status-in-review-bg: #ebeffc;
+  --status-done: #2e7d4f;
+  --status-done-bg: #e9f5ee;
+
+  /* Priority — separate ramp so it never collides visually with status */
+  --priority-low: #6b6862;
+  --priority-medium: #b8790c;
+  --priority-high: #c43d3d;
+
+  /* Role badges */
+  --role-admin: #6d3aa8;
+  --role-admin-bg: #f2ebfa;
+  --role-pm: #3454d1;
+  --role-pm-bg: #ebeffc;
+  --role-member: #2e7d4f;
+  --role-member-bg: #e9f5ee;
+
+  --danger: #c43d3d;
+  --danger-bg: #fbeaea;
+  --success: #2e7d4f;
+  --success-bg: #e9f5ee;
+
+  /* Trello-style board backgrounds — used behind boards and auth screens */
+  --board-blue: #0c66e4;
+  --board-blue-dark: #0747a6;
+  --board-purple: #6e5dc6;
+  --board-purple-dark: #4a3b96;
+  --board-teal: #1f845a;
+  --board-teal-dark: #164b35;
+  --board-red: #c9372c;
+  --board-red-dark: #8b241c;
+  --board-gold: #b38600;
+  --board-gold-dark: #7a5900;
+
+  --radius: 3px; /* Trello uses a smaller radius */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-card: var(--surface-card);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-foreground-muted: var(--foreground-muted);
+  --color-border: var(--border);
+
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+
+  --color-status-todo: var(--status-todo);
+  --color-status-todo-bg: var(--status-todo-bg);
+  --color-status-in-progress: var(--status-in-progress);
+  --color-status-in-progress-bg: var(--status-in-progress-bg);
+  --color-status-in-review: var(--status-in-review);
+  --color-status-in-review-bg: var(--status-in-review-bg);
+  --color-status-done: var(--status-done);
+  --color-status-done-bg: var(--status-done-bg);
+
+  --color-priority-low: var(--priority-low);
+  --color-priority-medium: var(--priority-medium);
+  --color-priority-high: var(--priority-high);
+
+  --color-role-admin: var(--role-admin);
+  --color-role-admin-bg: var(--role-admin-bg);
+  --color-role-pm: var(--role-pm);
+  --color-role-pm-bg: var(--role-pm-bg);
+  --color-role-member: var(--role-member);
+  --color-role-member-bg: var(--role-member-bg);
+
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+
+  --color-board-blue: var(--board-blue);
+  --color-board-blue-dark: var(--board-blue-dark);
+  --color-board-purple: var(--board-purple);
+  --color-board-purple-dark: var(--board-purple-dark);
+  --color-board-teal: var(--board-teal);
+  --color-board-teal-dark: var(--board-teal-dark);
+  --color-board-red: var(--board-red);
+  --color-board-red-dark: var(--board-red-dark);
+  --color-board-gold: var(--board-gold);
+  --color-board-gold-dark: var(--board-gold-dark);
+
+  --radius-DEFAULT: var(--radius);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1d2125; /* Trello-like dark background */
+    --surface: #282e33; /* Trello-like dark list background */
+    --surface-card: #343a40; /* Trello-like dark card background */
+    --surface-muted: #26252b;
+    --foreground: #b6c2cf; /* Trello dark text */
+    --foreground-muted: #8c9bab;
+    --border: #444;
+
+    --accent: #579dff;
+    --accent-hover: #85b8ff;
+    --accent-subtle: #232a48;
+
+    --status-todo: #a5a29b;
+    --status-todo-bg: #26252b;
+    --status-in-progress: #e3b341;
+    --status-in-progress-bg: #332a16;
+    --status-in-review: #6d87f0;
+    --status-in-review-bg: #1f2540;
+    --status-done: #5fbf87;
+    --status-done-bg: #17301f;
+
+    --priority-low: #9b9892;
+    --priority-medium: #e3b341;
+    --priority-high: #e06868;
+
+    --role-admin: #a87fde;
+    --role-admin-bg: #2a2140;
+    --role-pm: #6d87f0;
+    --role-pm-bg: #1f2540;
+    --role-member: #5fbf87;
+    --role-member-bg: #17301f;
+
+    --danger: #e06868;
+    --danger-bg: #3a1e1e;
+    --success: #5fbf87;
+    --success-bg: #17301f;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family:
+      var(--font-sans),
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

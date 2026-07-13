@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "5000:5000"
+    environment:
+      DB_HOST: some-mysql
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: my-secret-pw
+      DB_NAME: cyphlab_task_db
+    networks:
+      - project-network
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - project-network
+
+networks:
+  project-network:
+    external: true
