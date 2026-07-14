@@ -3,7 +3,7 @@
 A full-stack web application designed for teams to seamlessly manage projects, assign tasks, collaborate through comments, and track activity.
 
 ### 🔗 Live Demo
-- **Frontend (Web App):** [https://project-and-team-task-managment-platform-efokud5sk.vercel.app](https://project-and-team-task-managment-platform-efokud5sk.vercel.app)
+- **Frontend (Web App):** [https://project-and-team-task-managment-platform-efokud5sk.vercel.app](https://project-and-team-task-managment-pla-beta.vercel.app/)
 - **Backend (API):** [https://project-and-team-task-managment-pla-git-807d34-nakeshs-projects.vercel.app/api](https://project-and-team-task-managment-pla-git-807d34-nakeshs-projects.vercel.app/api)
 
 ---
