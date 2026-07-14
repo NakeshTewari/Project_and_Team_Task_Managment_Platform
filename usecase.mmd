@@ -1,0 +1,49 @@
+flowchart TD
+    %% Actors
+    Admin([ADMIN])
+    PM([PROJECT_MANAGER])
+    Member([TEAM_MEMBER])
+
+    %% Use Cases
+    subgraph Platform [Project & Team Task Management Platform]
+        direction TB
+        UC1([Manage Users])
+        UC2([View Activity Logs])
+        
+        UC3([Create/Edit Projects])
+        UC4([Delete Projects])
+        UC5([Manage Project Members])
+        
+        UC6([Create/Edit Tasks])
+        UC7([Delete Tasks])
+        
+        UC8([View Assigned Projects])
+        UC9([View Assigned Tasks])
+        UC10([Comment on Tasks])
+        UC11([Update Task Status])
+        
+        UC12([Login / Register])
+    end
+
+    %% Base Permissions
+    Admin --> UC1
+    Admin --> UC2
+    Admin --> UC3
+    Admin --> UC4
+    Admin --> UC5
+    Admin --> UC6
+    Admin --> UC7
+    Admin --> UC12
+    
+    PM --> UC3
+    PM --> UC4
+    PM --> UC5
+    PM --> UC6
+    PM --> UC7
+    PM --> UC12
+    
+    Member --> UC8
+    Member --> UC9
+    Member --> UC10
+    Member --> UC11
+    Member --> UC12

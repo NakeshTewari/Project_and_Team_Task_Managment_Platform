@@ -1,0 +1,70 @@
+erDiagram
+    users {
+        INT id PK
+        VARCHAR name
+        VARCHAR email
+        VARCHAR password
+        ENUM role
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+    
+    projects {
+        INT id PK
+        VARCHAR name
+        TEXT description
+        ENUM status
+        INT created_by_id FK
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    project_members {
+        INT id PK
+        INT project_id FK
+        INT user_id FK
+        VARCHAR role_in_project
+        TIMESTAMP joined_at
+    }
+    
+    tasks {
+        INT id PK
+        VARCHAR title
+        TEXT description
+        ENUM status
+        ENUM priority
+        DATE due_date
+        INT project_id FK
+        INT assigned_to_id FK
+        INT created_by_id FK
+        TIMESTAMP created_at
+        TIMESTAMP updated_at
+    }
+
+    task_comments {
+        INT id PK
+        INT task_id FK
+        INT user_id FK
+        TEXT content
+        TIMESTAMP created_at
+    }
+
+    activity_logs {
+        INT id PK
+        INT user_id FK
+        VARCHAR action
+        VARCHAR entity_type
+        INT entity_id
+        JSON metadata
+        TIMESTAMP created_at
+    }
+
+    users ||--o{ projects : "creates"
+    projects ||--o{ project_members : "has members"
+    users ||--o{ project_members : "joins as member"
+    projects ||--o{ tasks : "contains"
+    users ||--o{ tasks : "assigned to"
+    users ||--o{ tasks : "creates"
+    tasks ||--o{ task_comments : "has comments"
+    users ||--o{ task_comments : "writes"
+    users ||--o{ activity_logs : "generates log"

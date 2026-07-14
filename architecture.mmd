@@ -1,0 +1,17 @@
+flowchart TD
+    Client[Client / Web Browser]
+    
+    subgraph Vercel [Vercel Cloud Deployment]
+        direction TB
+        Frontend["Frontend Application\n(Next.js, React, Tailwind)"]
+        Backend["Backend API\n(Node.js, Express)"]
+    end
+    
+    subgraph Aiven [Aiven Cloud Database]
+        DB[("MySQL Database\n(cyphlab_task_db)")]
+    end
+
+    %% Connections
+    Client -- "HTTP Requests (UI Interaction)" --> Frontend
+    Frontend -- "REST API Calls (Axios)" --> Backend
+    Backend -- "SQL Queries (mysql2)" --> DB

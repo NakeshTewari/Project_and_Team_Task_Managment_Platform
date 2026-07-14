@@ -1,0 +1,30 @@
+flowchart TD
+    %% 1. Users (Clients)
+    Users(("Users\n(Admin, Project Manager, Team Member)"))
+    
+    %% 2. Frontend & Deployment
+    subgraph FrontendHosting [Deployment: Vercel]
+        Frontend["Next.js Frontend\n(React, HTML/CSS, JS/TS)"]
+    end
+
+    %% 3. Backend & Deployment
+    subgraph BackendHosting [Deployment: Vercel Serverless]
+        subgraph Backend ["Node.js + Express Backend"]
+            direction TB
+            Auth["JWT Authentication\n(Token Generation & Verification)"]
+            Logic["Business Logic\n(CRUD Operations)"]
+            Valid["Request Validation"]
+        end
+    end
+
+    %% 4. Database & Deployment
+    subgraph DBHosting [Deployment: Aiven Cloud]
+        subgraph Database ["MySQL Database"]
+            Tables[("Data Stored:\nUsers, Projects, Teams,\nTasks, Comments, Activity Logs")]
+        end
+    end
+
+    %% Data Flow / Connections
+    Users -->|"UI Interaction"| Frontend
+    Frontend -->|"HTTPS / REST API\n(Sends JWT for Auth)"| Backend
+    Backend -->|"Executes SQL Queries"| Database
