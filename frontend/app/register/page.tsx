@@ -32,7 +32,10 @@ export default function RegisterPage() {
     try {
       const user = await registerUser(form);
       setUser(user);
-      router.push("/login");
+      
+      if (user.role === "ADMIN") router.push("/admin/dashboard");
+      else if (user.role === "PROJECT_MANAGER") router.push("/pm/dashboard");
+      else router.push("/member/dashboard");
     } catch (err) {
       const axiosErr = err as AxiosError<{ message: string }>;
       setError(axiosErr.response?.data?.message || "Registration failed.");

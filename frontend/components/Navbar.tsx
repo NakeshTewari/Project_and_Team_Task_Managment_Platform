@@ -1,13 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
 import LogoutButton from "./LogoutButton";
 import RoleBadge from "./ui/RoleBadge";
 
 export default function Navbar() {
   const { user } = useAuth();
-  if (!user) return null;
+  const pathname = usePathname();
+  
+  if (!user || pathname === "/login" || pathname === "/register") return null;
 
   const dashboardHref =
     user.role === "ADMIN" ? "/admin/dashboard" : user.role === "PROJECT_MANAGER" ? "/pm/dashboard" : "/member/dashboard";
