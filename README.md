@@ -4,7 +4,7 @@ A full-stack web application designed for teams to seamlessly manage projects, a
 
 ### 🔗 Live Demo
 - **Frontend (Web App):** [Link](https://project-and-team-task-managment-pla-beta.vercel.app/)
-- **Backend (API):** [Link](https://project-and-team-task-managment-pla-git-807d34-nakeshs-projects.vercel.app)
+- **Backend (API):** [Link](https://project-and-team-task-managment-pla.vercel.app/)
 
 ---
 
