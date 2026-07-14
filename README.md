@@ -23,25 +23,46 @@ A full-stack web application designed for teams to seamlessly manage projects, a
 
 ---
 
-## 🔒 Roles & Access Control
+## 🔒 Roles, Access Control & API Routes
 
-The platform implements robust Role-Based Access Control (RBAC) to ensure users only see and modify what they are allowed to.
+The platform implements robust Role-Based Access Control (RBAC) to ensure users only see and modify what they are allowed to. 
 
-### Roles
-1. **ADMIN**
-   - Has full control over the platform.
-   - Can manage (CRUD) all Users.
-   - Can view system-wide Activity Logs.
-   - Can create, edit, and delete any Projects and Tasks.
+### 1. ADMIN
+Has full control over the entire platform, users, and logs.
+- **Allowed Routes:**
+  - `GET /api/users/` (List all users)
+  - `POST /api/users/` (Create a user)
+  - `PUT /api/users/:id` (Update a user)
+  - `DELETE /api/users/:id` (Delete a user)
+  - `GET /api/activity/` (View system-wide activity logs)
+  - *Plus all routes available to PROJECT_MANAGER and MEMBER.*
    
-2. **PROJECT_MANAGER**
-   - Can create, edit, and delete Projects and Tasks.
-   - Can add or remove members from specific projects.
+### 2. PROJECT_MANAGER
+Can manage projects, tasks, and the members assigned to them.
+- **Allowed Routes:**
+  - `POST /api/projects/` (Create a project)
+  - `PUT /api/projects/:id` (Update a project)
+  - `DELETE /api/projects/:id` (Delete a project)
+  - `POST /api/projects/:id/members` (Add a member to a project)
+  - `DELETE /api/projects/:id/members/:userId` (Remove a member)
+  - `POST /api/tasks/` (Create a task)
+  - `PUT /api/tasks/:id` (Update a task)
+  - `DELETE /api/tasks/:id` (Delete a task)
+  - *Plus all routes available to MEMBER.*
 
-3. **MEMBER / USER**
-   - Can view projects they are assigned to.
-   - Can view and update the status of their assigned tasks.
-   - Can add comments to tasks to communicate with the team.
+### 3. MEMBER / USER
+Standard authenticated users who can view their assignments and collaborate.
+- **Allowed Routes:**
+  - `GET /api/projects/` (View their projects)
+  - `GET /api/tasks/` (View their assigned tasks)
+  - `GET /api/auth/me` (Fetch their profile)
+  - `POST /api/auth/logout` (Logout)
+  - *(Implicitly allowed to add comments depending on controller logic).*
+
+### Public Routes
+Accessible by anyone without a token.
+- `POST /api/auth/register` (Create an account)
+- `POST /api/auth/login` (Authenticate and get JWT)
 
 ---
 
@@ -109,18 +130,21 @@ The application will now be running at `http://localhost:3000`.
 
 ---
 
-## 🌐 Deployment (Vercel)
+## 🌐 Deployment (Vercel) & Frontend Connection
 
-This repository is configured as a monorepo and is natively compatible with Vercel.
+This repository is configured as a monorepo and is natively compatible with Vercel. 
 
-### Backend Deployment
+### 1. Backend Deployment
 1. Import the repository into Vercel.
 2. Set the **Root Directory** to `backend`.
 3. Add all your database environment variables.
 4. Click Deploy. Vercel will automatically run it as a Serverless Function thanks to the `vercel.json` configuration.
 
-### Frontend Deployment
-1. Import the repository into Vercel again.
+### 2. Frontend Connection (Important!)
+Your frontend uses an Axios instance (`frontend/lib/api.ts`) that relies on the `NEXT_PUBLIC_API_URL` environment variable to know where the backend lives.
+To connect the live frontend to the live backend:
+1. Import the repository into Vercel again to create the frontend project.
 2. Set the **Root Directory** to `frontend`.
-3. Add the `NEXT_PUBLIC_API_URL` environment variable, pointing to your live backend URL (make sure to append `/api` at the end).
-4. Click Deploy.
+3. Add the `NEXT_PUBLIC_API_URL` environment variable. 
+4. **Crucial:** Set its value to your live backend URL and explicitly append `/api` at the end (e.g., `https://your-backend.vercel.app/api`).
+5. Click Deploy. Vercel will statically bake this URL into the frontend build.
