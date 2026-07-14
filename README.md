@@ -2,6 +2,12 @@
 
 A full-stack web application designed for teams to seamlessly manage projects, assign tasks, collaborate through comments, and track activity.
 
+### 🔗 Live Demo
+- **Frontend (Web App):** [https://project-and-team-task-managment-platform-efokud5sk.vercel.app](https://project-and-team-task-managment-platform-efokud5sk.vercel.app)
+- **Backend (API):** [https://project-and-team-task-managment-pla-git-807d34-nakeshs-projects.vercel.app/api](https://project-and-team-task-managment-pla-git-807d34-nakeshs-projects.vercel.app/api)
+
+---
+
 ## 🚀 Tech Stack
 
 ### Frontend
@@ -15,13 +21,40 @@ A full-stack web application designed for teams to seamlessly manage projects, a
 - **Database:** MySQL (Hosted on Aiven)
 - **Authentication:** JSON Web Tokens (JWT) & bcrypt
 
-## ✨ Features
+---
 
-- **Secure Authentication:** User registration and login using JWT.
-- **Project Management:** Create and manage distinct projects.
-- **Task Tracking:** Assign tasks, update statuses, and monitor progress.
-- **Team Collaboration:** Built-in comment system on tasks and projects.
-- **Activity Logs:** Track recent activities and changes across the platform.
+## 🔒 Roles & Access Control
+
+The platform implements robust Role-Based Access Control (RBAC) to ensure users only see and modify what they are allowed to.
+
+### Roles
+1. **ADMIN**
+   - Has full control over the platform.
+   - Can manage (CRUD) all Users.
+   - Can view system-wide Activity Logs.
+   - Can create, edit, and delete any Projects and Tasks.
+   
+2. **PROJECT_MANAGER**
+   - Can create, edit, and delete Projects and Tasks.
+   - Can add or remove members from specific projects.
+
+3. **MEMBER / USER**
+   - Can view projects they are assigned to.
+   - Can view and update the status of their assigned tasks.
+   - Can add comments to tasks to communicate with the team.
+
+---
+
+## 🗄️ Database Architecture
+
+The MySQL database is highly relational, ensuring data integrity across the platform. Here are the core tables:
+
+- **`users`**: Stores user credentials, names, and their assigned `role`.
+- **`projects`**: Stores high-level project details (name, description, deadlines).
+- **`project_members`**: A join table mapping users to the projects they are allowed to access.
+- **`tasks`**: Stores individual task details, linking to a specific `project_id` and assigned to a `user_id`.
+- **`task_comments`**: Stores all comments made by users on specific tasks.
+- **`activity_logs`**: An audit trail that logs significant actions (like task creation or status changes) performed by users across the platform.
 
 ---
 
@@ -78,12 +111,12 @@ The application will now be running at `http://localhost:3000`.
 
 ## 🌐 Deployment (Vercel)
 
-This repository is configured as a monorepo and can be deployed directly to Vercel as two separate projects.
+This repository is configured as a monorepo and is natively compatible with Vercel.
 
 ### Backend Deployment
 1. Import the repository into Vercel.
 2. Set the **Root Directory** to `backend`.
-3. Add all your database environment variables (and `JWT_SECRET`).
+3. Add all your database environment variables.
 4. Click Deploy. Vercel will automatically run it as a Serverless Function thanks to the `vercel.json` configuration.
 
 ### Frontend Deployment
