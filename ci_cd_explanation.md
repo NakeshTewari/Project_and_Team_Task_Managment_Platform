@@ -1,15 +1,15 @@
 # CI/CD Workflow Explanation
 **Project & Team Task Management Platform**
 
-Your project utilizes a modern, two-part Continuous Integration and Continuous Deployment (CI/CD) pipeline. This setup ensures that your code is automatically tested for quality (linted and built) before it goes live to your users.
+My project utilizes a modern, two-part Continuous Integration and Continuous Deployment (CI/CD) pipeline. This setup ensures that my code is automatically tested for quality (linted and built) before it goes live to my users.
 
-Here is exactly how your workflow operates from the moment you write code to the moment it is deployed.
+Here is exactly how my workflow operates from the moment I write code to the moment it is deployed.
 
 ---
 
 ## Part 1: Continuous Integration (GitHub Actions)
 
-Your project contains a workflow file located at `.github/workflows/ci.yml`. This file leverages GitHub Actions to act as your primary **Continuous Integration** gatekeeper.
+My project contains a workflow file located at `.github/workflows/ci.yml`. This file leverages GitHub Actions to act as my primary **Continuous Integration** gatekeeper.
 
 ### 1. Triggers
 The workflow is automatically triggered whenever a developer:
@@ -29,7 +29,7 @@ The pipeline changes directories into your `/backend` folder and executes:
 The pipeline then moves to your `/frontend` folder and executes:
 - `npm ci`: Installs frontend dependencies.
 - `npm run lint`: Runs **ESLint** to enforce code quality, catching syntax errors and messy code styles before they are merged.
-- `npm run build`: Executes `next build`. This is a critical step because Next.js has strict build requirements. If there are TypeScript errors, missing modules, or severe linting violations, **the build will fail and reject your code**.
+- `npm run build`: Executes `next build`. This is a critical step because Next.js has strict build requirements. If there are TypeScript errors, missing modules, or severe linting violations, **the build will fail and reject my code**.
 
 ---
 
@@ -38,19 +38,21 @@ The pipeline then moves to your `/frontend` folder and executes:
 While GitHub Actions handles the *Integration* and testing, **Vercel** handles the *Deployment*.
 
 ### 1. Webhook Listening
-Vercel is directly connected to your GitHub repository. It constantly listens for any push to the `main` branch.
+Vercel is directly connected to my GitHub repository. It constantly listens for any push to the `main` branch.
 
 ### 2. Automatic Building
-Once you push code (and assuming your GitHub Actions pass), Vercel automatically clones the repository and begins building it using its highly optimized Next.js and Node.js build systems.
+Once I push code (and assuming my GitHub Actions pass), Vercel automatically clones the repository and begins building it using its highly optimized Next.js and Node.js build systems.
 
 ### 3. Serverless Distribution
-- **Frontend:** Vercel deploys your Next.js application globally across its Edge Network, ensuring lightning-fast load times.
-- **Backend:** Because of the `vercel.json` configuration file you have in your backend, Vercel intelligently takes your `server.js` Express app and wraps it into **Serverless Functions**. 
+- **Frontend:** Vercel deploys my Next.js application globally across its Edge Network, ensuring lightning-fast load times.
+- **Backend:** Because of the `vercel.json` configuration file I have in my backend, Vercel intelligently takes my `server.js` Express app and wraps it into **Serverless Functions**. 
 
 ### 4. Zero-Downtime Releases
-When the build is successfully completed on Vercel, it atomically swaps the old version of your site with the new version. If Vercel encounters a build error (such as a typo breaking the app), it **cancels the deployment** and keeps the old working version live, ensuring your users never see a broken application.
+When the build is successfully completed on Vercel, it atomically swaps the old version of my site with the new version. If Vercel encounters a build error (such as a typo breaking the app), it **cancels the deployment** and keeps the old working version live, ensuring my users never see a broken application.
 
 ---
 
 ### Summary of the Flow
 `Write Code` ➔ `Push to GitHub` ➔ `GitHub Actions runs Lint & Build (CI)` ➔ `Vercel auto-deploys to Serverless Functions (CD)`
+
+

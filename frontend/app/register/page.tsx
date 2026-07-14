@@ -4,7 +4,7 @@ import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { registerUser } from "../../lib/auth";
 import { useAuth } from "../../context/AuthContext";
-import { Role, RegisterPayload } from "../../types/auth";
+import { RegisterPayload } from "../../types/auth";
 import { AxiosError } from "axios";
 
 export default function RegisterPage() {

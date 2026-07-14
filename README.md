@@ -137,14 +137,16 @@ This repository is configured as a monorepo and is natively compatible with Verc
 ### 1. Backend Deployment
 1. Import the repository into Vercel.
 2. Set the **Root Directory** to `backend`.
-3. Add all your database environment variables.
+3. Add all my database environment variables.
 4. Click Deploy. Vercel will automatically run it as a Serverless Function thanks to the `vercel.json` configuration.
 
 ### 2. Frontend Connection (Important!)
-Your frontend uses an Axios instance (`frontend/lib/api.ts`) that relies on the `NEXT_PUBLIC_API_URL` environment variable to know where the backend lives.
+My frontend uses an Axios instance (`frontend/lib/api.ts`) that relies on the `NEXT_PUBLIC_API_URL` environment variable to know where the backend lives.
 To connect the live frontend to the live backend:
 1. Import the repository into Vercel again to create the frontend project.
 2. Set the **Root Directory** to `frontend`.
 3. Add the `NEXT_PUBLIC_API_URL` environment variable. 
-4. **Crucial:** Set its value to your live backend URL and explicitly append `/api` at the end (e.g., `https://your-backend.vercel.app/api`).
+4. **Crucial:** Set its value to my live backend URL and explicitly append `/api` at the end (e.g., `https://my-backend.vercel.app/api`).
 5. Click Deploy. Vercel will statically bake this URL into the frontend build.
+
+
