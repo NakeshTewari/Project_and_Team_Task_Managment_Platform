@@ -79,6 +79,20 @@ The MySQL database is highly relational, ensuring data integrity across the plat
 
 ---
 
+## 📂 Project Documentation & Diagrams
+
+To help you understand the architecture, API, and features of the platform, the following documentation files are included in the repository:
+
+- **`api_documentation`**: Contains comprehensive details about all the available API endpoints, request/response formats, authentication requirements, and role-based access rules.
+- **`backup.sql`**: A complete database dump file. Use this to quickly restore the initial database schema and sample data for local development or testing.
+- **`ci_cd explanation`**: Explains the Continuous Integration and Continuous Deployment (CI/CD) pipelines set up for this project, including automated testing and deployment workflows.
+- **`detailed_architecture`**: Provides an in-depth look at the system's high-level architecture, explaining how the frontend, backend, and database interact.
+- **`erd`**: The Entity-Relationship Diagram (ERD) detailing the database tables (`users`, `projects`, `tasks`, etc.) and the relationships between them.
+- **`feature_completition_report`**: A checklist and status report of the implemented features, ongoing development, and future roadmap.
+- **`usecase diagram`**: Visualizes the various actors (Admin, Project Manager, Member) and their interactions with the system's features.
+
+---
+
 ## 🛠️ Local Setup & Installation
 
 ### Prerequisites
